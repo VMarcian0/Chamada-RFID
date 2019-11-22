@@ -46,5 +46,19 @@ namespace ConectTest
             Config a = new Config();
             a.Show();
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            
+            Chamada chamada = new Chamada();
+            chamada.Show();
+
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            Consulta c = new Consulta();
+            c.Visible = true;
+        }
     }
 }

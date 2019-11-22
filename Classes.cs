@@ -95,6 +95,7 @@ namespace ConectTest
             try
             {
               arduino.WriteLine("Lendo Cartao");
+              arduino.DiscardInBuffer();
               leitura = arduino.ReadLine().Replace("\r", "").ToString().ToUpper();
               Fechar();
               return leitura;

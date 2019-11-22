@@ -16,18 +16,10 @@ namespace ConectTest
     {
         public Cadastro()
         {
-            
             InitializeComponent();
             Banco_dados db = new Banco_dados();
-            db.Conect_to_database(db.con);
             string comando = "SELECT Nome FROM Curso ORDER BY Cod_curso";
-            MySqlCommand edh = new MySqlCommand(comando, db.con);
-            MySqlDataReader myReader;
-            myReader = edh.ExecuteReader();
-            while (myReader.Read())
-            {
-                combo_curso.Items.Add(myReader.GetString(0));
-            }
+            db.get_cb(db, comando, cb_curso);
         }
 
         private void Btn_ConectaBD_Click(object sender, EventArgs e)
@@ -47,7 +39,8 @@ namespace ConectTest
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-                    }
+
+        }
 
         private void Btn_Enviar_Click(object sender, EventArgs e)
         {
@@ -64,7 +57,7 @@ namespace ConectTest
             else
             {
                 
-                Aluno a = new Aluno(txt_Nome.Text,Int32.Parse(txt_id.Text), txt_IdCard.Text, (combo_curso.Items.IndexOf(combo_curso.Text)+1));
+                Aluno a = new Aluno(txt_Nome.Text,Int32.Parse(txt_id.Text), txt_IdCard.Text, (cb_curso.Items.IndexOf(cb_curso.Text)+1));
                 comando = "INSERT INTO Aluno (RA, Cod_curso, RFID, Nome) VALUES ("+a.RA+", "+a.cod_curso+", '"+a.RFID+"', '"+a.Nome+"')";
                 Console.WriteLine(comando);
             }
@@ -92,8 +85,11 @@ namespace ConectTest
 
         private void Btn_read_RFID_Click(object sender, EventArgs e)
         {
+            btn_read_RFID.Text = "Lendo";
+            txt_IdCard.Text = "";
             Arduino a = new Arduino(Config.stdComName,Config.stdBauldRate);
             txt_IdCard.Text = a.Ler().ToString();
+            btn_read_RFID.Text = "Ler cartão";
         }
 
         private void Check_professor_CheckedChanged(object sender, EventArgs e)
@@ -101,13 +97,13 @@ namespace ConectTest
             if(check_professor.Checked)
             {
                 Id_name.Text = "ID";
-                combo_curso.Visible = false;
+                cb_curso.Visible = false;
                 lbl_curso.Visible = false;
                 
             }else
             {
                 Id_name.Text = "RA";
-                combo_curso.Visible = true;
+                cb_curso.Visible = true;
                 lbl_curso.Visible = true;
             }
         }
@@ -128,6 +124,11 @@ namespace ConectTest
         {
             this.Close();
             
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

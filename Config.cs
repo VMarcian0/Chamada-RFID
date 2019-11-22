@@ -54,7 +54,7 @@ namespace ConectTest
             cbNomePorta.DataSource = p;
             txtBauldRate.Text = stdBauldRate.ToString();
         }
-        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        private void Config_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -92,6 +92,19 @@ namespace ConectTest
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro: " + ex.Message);
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Banco_dados db = new Banco_dados();
+            db.execute_query(db, "DELETE FROM Aula");
+            db.execute_query(db, "DELETE FROM aluno_aula");
+            if(ch_limp.Checked)
+            {
+                db.execute_query(db, "DELETE FROM Aluno");
+                db.execute_query(db, "DELETE FROM Turma");
+                db.execute_query(db, "DELETE FROM Professor");
             }
         }
     }

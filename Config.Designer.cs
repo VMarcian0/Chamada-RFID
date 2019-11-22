@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.stdCom = new System.IO.Ports.SerialPort(this.components);
+            this.Btn_limpar = new System.Windows.Forms.Button();
+            this.ch_limp = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,11 +112,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Arduino";
             // 
+            // Btn_limpar
+            // 
+            this.Btn_limpar.Location = new System.Drawing.Point(21, 194);
+            this.Btn_limpar.Name = "Btn_limpar";
+            this.Btn_limpar.Size = new System.Drawing.Size(80, 20);
+            this.Btn_limpar.TabIndex = 8;
+            this.Btn_limpar.Text = "Limpar DB";
+            this.Btn_limpar.UseVisualStyleBackColor = true;
+            this.Btn_limpar.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // ch_limp
+            // 
+            this.ch_limp.AutoSize = true;
+            this.ch_limp.Location = new System.Drawing.Point(108, 196);
+            this.ch_limp.Name = "ch_limp";
+            this.ch_limp.Size = new System.Drawing.Size(71, 17);
+            this.ch_limp.TabIndex = 9;
+            this.ch_limp.Text = "Full clean";
+            this.ch_limp.UseVisualStyleBackColor = true;
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(196, 216);
+            this.Controls.Add(this.ch_limp);
+            this.Controls.Add(this.Btn_limpar);
             this.Controls.Add(this.cbNomePorta);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtStatus);
@@ -142,5 +166,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.IO.Ports.SerialPort stdCom;
+        private System.Windows.Forms.Button Btn_limpar;
+        private System.Windows.Forms.CheckBox ch_limp;
     }
 }
